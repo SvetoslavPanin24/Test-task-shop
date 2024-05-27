@@ -23,6 +23,11 @@ namespace Game.Ui
             EventBus.Subscribe<ItemStatusChangedEvent>(UpdateView);
         }
 
+        private void OnDisable()
+        {
+            EventBus.Unsubscribe<ItemStatusChangedEvent>(UpdateView);
+        }
+
         private void Start()
         {
             item = ShopManager.Instance.GetItem(itemId);

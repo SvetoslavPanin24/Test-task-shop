@@ -26,10 +26,7 @@ namespace Game.Managers
         private void Start()
         {
             LoadCurrencies();
-            if(currencies == null)
-            {
-                Debug.Log("f");
-            }
+             
         }
         private void LoadCurrencies()
         {
