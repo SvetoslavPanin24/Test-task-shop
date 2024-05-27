@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class DiamonCurrency : DonateCurrency
+namespace Game.Currencies
 {
-    private void Awake()
+    public class DiamonCurrency : DonateCurrency
     {
-        Name = "Diamond";
+        private void Awake()
+        {
+            Name = "Diamond";
+        }
     }
 }

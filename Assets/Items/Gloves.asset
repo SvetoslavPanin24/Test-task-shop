@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   itemName: Gloves
-  isUnlocked: 0
+  isUnlocked: 1
   isTemporary: 0
   unlockTime: 0
   <Sprite>k__BackingField: {fileID: 21300000, guid: 52a072302ad6bb84092d0e74aa0ad861, type: 3}

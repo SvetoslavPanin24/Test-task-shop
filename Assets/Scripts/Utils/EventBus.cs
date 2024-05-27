@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 
+namespace Game.Utils
+{
     public static class EventBus
     {
         private static Dictionary<Type, List<Action<object>>> subscribers = new Dictionary<Type, List<Action<object>>>();
@@ -36,3 +38,4 @@ using System.Collections.Generic;
             }
         }
     }
+}

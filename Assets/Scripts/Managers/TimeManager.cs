@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using UnityEngine.Networking;
 
-namespace MyGame.Managers
+namespace Game.Managers
 {
     public class TimeManager : MonoBehaviour
     {

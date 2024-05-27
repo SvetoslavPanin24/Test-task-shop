@@ -1,20 +1,23 @@
-public abstract class GameCurrency : Currency
+namespace Game.Currencies
 {
-    public override bool Spend(int cost)
+    public abstract class GameCurrency : Currency
     {
-        if (Amount >= cost)
+        public override bool Spend(int cost)
         {
-            Amount -= cost;            
-            UpdateUI();
-            return true;
+            if (Amount >= cost)
+            {
+                Amount -= cost;
+                UpdateUI();
+                return true;
+            }
+
+            return false;
         }
 
-        return false;
-    }
-
-    public override void Earn(int value)
-    {
-        Amount += value;
-        UpdateUI();
+        public override void Earn(int value)
+        {
+            Amount += value;
+            UpdateUI();
+        }
     }
 }

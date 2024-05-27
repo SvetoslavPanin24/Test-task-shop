@@ -1,7 +1,10 @@
-public class GoldCurrency : GameCurrency
+namespace Game.Currencies
 {
-    private void Awake()
+    public class GoldCurrency : GameCurrency
     {
-        Name = "Gold";
+        private void Awake()
+        {
+            Name = "Gold";
+        }
     }
 }

@@ -2,22 +2,25 @@ using System;
 using System.Security.Cryptography;
 using System.Text;
 
-public static class HashUtils
+namespace Game.Utils
 {
-    private static readonly string HashKey = "5f70c24a45578f8fcdf7f72fcf46e229";  
-
-    public static string ComputeHash(string input)
+    public static class HashUtils
     {
-        using (HMACSHA256 hmac = new HMACSHA256(Encoding.UTF8.GetBytes(HashKey)))
+        private static readonly string HashKey = "5f70c24a45578f8fcdf7f72fcf46e229";
+
+        public static string ComputeHash(string input)
         {
-            byte[] hashBytes = hmac.ComputeHash(Encoding.UTF8.GetBytes(input));
-            return Convert.ToBase64String(hashBytes);
+            using (HMACSHA256 hmac = new HMACSHA256(Encoding.UTF8.GetBytes(HashKey)))
+            {
+                byte[] hashBytes = hmac.ComputeHash(Encoding.UTF8.GetBytes(input));
+                return Convert.ToBase64String(hashBytes);
+            }
         }
-    }
 
-    public static bool VerifyHash(string input, string hash)
-    {
-        string computedHash = ComputeHash(input);
-        return computedHash == hash;
+        public static bool VerifyHash(string input, string hash)
+        {
+            string computedHash = ComputeHash(input);
+            return computedHash == hash;
+        }
     }
 }

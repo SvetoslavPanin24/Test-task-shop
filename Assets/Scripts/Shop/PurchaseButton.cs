@@ -1,38 +1,40 @@
-using TMPro;
+using Game.Managers;
+using Game.PurchaseMethods;
 using TNRD;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class PurchaseButton : MonoBehaviour
-{    
-    [Header("Initialize item to purshase")]
-    [SerializeField] private int itemId;  
-    private IItem item;
-
-    [Header("Initialize purshase method")]
-    [SerializeField] private SerializableInterface<IPurchaseStrategy> method;
-
-    private void Start()
+namespace Game.Ui
+{
+    public class PurchaseButton : MonoBehaviour
     {
-        item = ShopManager.Instance.GetItem(itemId);
-    }
+        [Header("Initialize item to purshase")]
+        [SerializeField] private int itemId;
+        private IItem item;
 
-    public void OnClick()
-    {
-        if (item.IsUnlocked)
+        [Header("Initialize purshase method")]
+        [SerializeField] private SerializableInterface<IPurchaseStrategy> method;
+
+        private void Start()
         {
-            Debug.Log($"{item.Name} already unlocked");
+            item = ShopManager.Instance.GetItem(itemId);
         }
 
-        if (method.Value.Purchase(item))
+        public void OnClick()
         {
-            // Update item status and UI
-            Debug.Log($"{item.Name} purchased with {method.Value.MethodName}");
-        }
-        else
-        {
-            Debug.Log($"Failed to purchase {item.Name} with {method.Value.MethodName}");
+            if (item.IsUnlocked)
+            {
+                Debug.Log($"{item.Name} already unlocked");
+            }
+
+            if (method.Value.Purchase(item))
+            {
+                // Update item status and UI
+                Debug.Log($"{item.Name} purchased with {method.Value.MethodName}");
+            }
+            else
+            {
+                Debug.Log($"Failed to purchase {item.Name} with {method.Value.MethodName}");
+            }
         }
     }
 }
-

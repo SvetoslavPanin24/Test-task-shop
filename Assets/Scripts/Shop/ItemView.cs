@@ -1,59 +1,64 @@
+using Game.Managers;
+using Game.Utils;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static Item;
+using static Game.Item;
 
-public class ItemView : MonoBehaviour
+namespace Game.Ui
 {
-    [SerializeField] private int itemId;
-    [SerializeField] private TMP_Text statusText;
-    [SerializeField] private TMP_Text timerText;
-    [SerializeField] private Image itemImage;
-
-    private bool timerIsActive;
-
-    private IItem item;
-
-    private void OnEnable()
+    public class ItemView : MonoBehaviour
     {
-        EventBus.Subscribe<ItemStatusChangedEvent>(UpdateView);
-    }
+        [SerializeField] private int itemId;
+        [SerializeField] private TMP_Text statusText;
+        [SerializeField] private TMP_Text timerText;
+        [SerializeField] private Image itemImage;
 
-    private void Start()
-    {
-        item = ShopManager.Instance.GetItem(itemId);
-        InitializeView();
-    }
+        private bool timerIsActive;
 
-    private void Update()
-    {
-        if (timerIsActive)
+        private IItem item;
+
+        private void OnEnable()
         {
-            timerText.text = item.GetRemainingTimeFormatted();
+            EventBus.Subscribe<ItemStatusChangedEvent>(UpdateView);
         }
-        else
-        {
-            timerText.text = string.Empty;
-        }
-    }
 
-    public void InitializeView()
-    {
-        statusText.text = item.IsUnlocked ? "Unlocked" : "Locked";
-        itemImage.sprite = item.Sprite;
-    }
-    public void UpdateView(ItemStatusChangedEvent e)
-    {
-        if (e.ItemId == itemId)
+        private void Start()
         {
-            statusText.text = item.IsUnlocked ? "Unlocked" : "Locked";
-            if (e.IsTemporary)
+            item = ShopManager.Instance.GetItem(itemId);
+            InitializeView();
+        }
+
+        private void Update()
+        {
+            if (timerIsActive)
             {
-                timerIsActive = true;
+                timerText.text = item.GetRemainingTimeFormatted();
             }
             else
             {
-                timerIsActive = false;
+                timerText.text = string.Empty;
+            }
+        }
+
+        public void InitializeView()
+        {
+            statusText.text = item.IsUnlocked ? "Unlocked" : "Locked";
+            itemImage.sprite = item.Sprite;
+        }
+        public void UpdateView(ItemStatusChangedEvent e)
+        {
+            if (e.ItemId == itemId)
+            {
+                statusText.text = item.IsUnlocked ? "Unlocked" : "Locked";
+                if (e.IsTemporary)
+                {
+                    timerIsActive = true;
+                }
+                else
+                {
+                    timerIsActive = false;
+                }
             }
         }
     }

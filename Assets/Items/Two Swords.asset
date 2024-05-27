@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 5
   itemName: Two Swords
-  isUnlocked: 0
-  isTemporary: 0
-  unlockTime: 0
+  isUnlocked: 1
+  isTemporary: 1
+  unlockTime: 91.25712
   <Sprite>k__BackingField: {fileID: 21300000, guid: 913ef3b9d38804b47acb2b9850cf1fb6, type: 3}

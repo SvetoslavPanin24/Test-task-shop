@@ -1,35 +1,41 @@
+using Game.Currencies;
+using Game.Managers;
+using Game.Utils;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class PurchaseWithDonateCurrencyPurchaseWithDonateCurrency : MonoBehaviour, IPurchaseStrategy
+namespace Game.PurchaseMethods
 {
-    [SerializeField] private string CurrencyName;
-
-    private DonateCurrency currency;
-    [SerializeField] private int cost;
-
-    [SerializeField] private TMP_Text purchaseText;
-
-    private void Start()
+    public class PurchaseWithDonateCurrency : MonoBehaviour, IPurchaseStrategy
     {
-        currency = (DonateCurrency)CurrencyManager.Instance.GetCurrency(CurrencyName);
-        purchaseText.text = ($"{cost} {currency.Name}");
-    }
+        [SerializeField] private string CurrencyName;
 
-    public string MethodName => "Game Currency Purchase";
+        private DonateCurrency currency;
+        [SerializeField] private int cost;
 
-    public bool Purchase(IItem item)
-    {
-        if (item.IsUnlocked) return false;
+        [SerializeField] private TMP_Text purchaseText;
 
-        if (currency.Amount >= cost)
+        private void Start()
         {
-            currency.Spend(cost);
-            item.Unlock();
-            DataManager.SaveItemStatus(new List<IItem> { item });
-            return true;
+            currency = (DonateCurrency)CurrencyManager.Instance.GetCurrency(CurrencyName);
+            purchaseText.text = ($"{cost} {currency.Name}");
         }
-        return false;
+
+        public string MethodName => "Donate Currency Purchase";
+
+        public bool Purchase(IItem item)
+        {
+            if (item.IsUnlocked) return false;
+
+            if (currency.Amount >= cost)
+            {
+                currency.Spend(cost);
+                item.Unlock();
+                DataManager.SaveItemStatus(new List<IItem> { item });
+                return true;
+            }
+            return false;
+        }
     }
 }

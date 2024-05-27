@@ -1,26 +1,28 @@
 using TMPro;
 using UnityEngine;
 
-[System.Serializable]
-public abstract class Currency : MonoBehaviour
+namespace Game.Currencies
 {
-    public string Name { get; protected set; }
-    public int Amount { get; protected set; }
-
-    [SerializeField] protected TMP_Text currencyText;  
-
-    public abstract bool Spend(int cost);
-
-    public abstract void Earn(int value);
-
-    public void SetCurrencyAmount(int value)
+    public abstract class Currency : MonoBehaviour
     {
-        Amount = value;        
-        UpdateUI();
-    }
-    protected virtual void UpdateUI()
-    {
-        currencyText.text = Name+" " + Amount.ToString();
-       
+        public string Name { get; protected set; }
+        public int Amount { get; protected set; }
+
+        [SerializeField] protected TMP_Text currencyText;
+
+        public abstract bool Spend(int cost);
+
+        public abstract void Earn(int value);
+
+        public void SetCurrencyAmount(int value)
+        {
+            Amount = value;
+            UpdateUI();
+        }
+        protected virtual void UpdateUI()
+        {
+            currencyText.text = Name + " " + Amount.ToString();
+
+        }
     }
 }

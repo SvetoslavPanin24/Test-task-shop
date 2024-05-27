@@ -1,5 +1,8 @@
-public interface IPurchaseStrategy
+namespace Game.PurchaseMethods
 {
-    string MethodName { get; }
-    bool Purchase(IItem item);
+    public interface IPurchaseStrategy
+    {
+        string MethodName { get; }
+        bool Purchase(IItem item);
+    }
 }
