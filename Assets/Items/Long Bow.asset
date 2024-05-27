@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 3
   itemName: LongBow
-  isUnlocked: 1
-  isTemporary: 1
-  unlockTime: 1158.5266
+  isUnlocked: 0
+  isTemporary: 0
+  unlockTime: 0
   <Sprite>k__BackingField: {fileID: 21300000, guid: b334427f8d0c04e4fa2066a685fc0232, type: 3}

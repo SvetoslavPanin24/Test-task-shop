@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 4
   itemName: Shield
-  isUnlocked: 1
+  isUnlocked: 0
   isTemporary: 0
   unlockTime: 0
   <Sprite>k__BackingField: {fileID: 21300000, guid: 35c60a5c388f29e4fa2737ae9a8d811e, type: 3}
